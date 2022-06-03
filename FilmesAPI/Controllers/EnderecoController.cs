@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 
 namespace FilmesAPI.Controllers
 {
+    [ApiController]             
+    [Route("[Controller]")]
     public class EnderecoController : ControllerBase
     {
         private FilmeContext _context;
