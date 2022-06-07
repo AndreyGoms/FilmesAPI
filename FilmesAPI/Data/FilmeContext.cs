@@ -19,11 +19,21 @@ namespace FilmesAPI.Data
                 .HasForeignKey<Cinema>(cinema => cinema.enderecoId);
             //entidade do tipo endereco tem um cinema, logo ese cinema possui um endereco
             //acheve estrangeira esta em cinema e é o enderecoId
+
+            builder.Entity<Cinema>()
+                .HasOne(cinema => cinema.gerente)
+                .WithMany(gerente => gerente.Cinemas)
+                .HasForeignKey(cinema => cinema.gerenteID);
+            //  .OnDelete(DeleteBehavior.Restrict); faz com que a delecao seja restrita, ou seja, se deletar gerente o cinema ainda existiria
+            // .HasForeignKey(cinema => cinema.gerenteID).IsRequired(false); possibilita criar cinema sem necessidade de uma chave de gerente
+
+
         }
 
 
         public DbSet<Filme> Filmes { get; set; }
         public DbSet<Cinema> Cinemas { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
+        public DbSet<Gerente> Gerentes { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using FilmesAPI.Data.Dto;
+using FilmesAPI.Data.Dtos;
 using FilmesAPI.Models;
 using System;
 using System.Collections.Generic;
@@ -13,9 +13,9 @@ namespace FilmesAPI.Profiles
         //Cria-se o construtor que conterá os metodos de conversão
         public FilmeProfile()
         {
-            CreateMap<CreateFilmeDto, Filme>();
-            CreateMap<Filme, ReadFilmeDto>();
-            CreateMap<UpdateFilmeDto, Filme>();
+            CreateMap<CreateFilmeDtos, Filme>();
+            CreateMap<Filme, ReadFilmeDtos>();
+            CreateMap<UpdateFilmeDtos, Filme>();
         }
     }
 }

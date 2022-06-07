@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FilmesAPI.Data.Dto
+namespace FilmesAPI.Data.Dtos
 {
-    public class UpdateCinemaDto
+    public class UpdateCinemaDtos
     {
 
         [Required(ErrorMessage = "Campo nome é obrigatorio")]

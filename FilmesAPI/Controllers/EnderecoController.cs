@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using FilmesAPI.Data.Dto;
+using FilmesAPI.Data.Dtos;
 using FilmesAPI.Data;
 using FilmesAPI.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -24,9 +24,9 @@ namespace FilmesAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult AdcionarEndereco([FromBody] CreateEnderecoDto createEnderecoDto)
+        public IActionResult AdcionarEndereco([FromBody] CreateEnderecoDtos createEnderecoDtos)
         {
-            Endereco endereco = _mapper.Map<Endereco>(createEnderecoDto);
+            Endereco endereco = _mapper.Map<Endereco>(createEnderecoDtos);
 
             _context.Add(endereco);
             _context.SaveChanges();
@@ -45,7 +45,7 @@ namespace FilmesAPI.Controllers
 
             if (endereco != null)
             {
-                ReadEnderecoDto readEnderecoDto = _mapper.Map<ReadEnderecoDto>(endereco);
+                ReadEnderecoDtos readEnderecoDtos = _mapper.Map<ReadEnderecoDtos>(endereco);
                 return Ok();
             }
 
@@ -54,18 +54,18 @@ namespace FilmesAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult AtualizaEnderecoId(int id, [FromBody] UpdateEnderecoDto updateEnderecoDto)
+        public IActionResult AtualizaEnderecoId(int id, [FromBody] UpdateEnderecoDtos updateEnderecoDtos)
         {
             Endereco endereco = _context.Enderecos.FirstOrDefault(endereco => endereco.Id == id);
 
             if (endereco == null)
                 return NotFound();
 
-            _mapper.Map<Endereco>(updateEnderecoDto);
+            _mapper.Map<Endereco>(updateEnderecoDtos);
 
-            endereco.Logradouro = updateEnderecoDto.Logradouro;
-            endereco.Bairro = updateEnderecoDto.Bairro;
-            endereco.Numero = updateEnderecoDto.Numero;
+            endereco.Logradouro = updateEnderecoDtos.Logradouro;
+            endereco.Bairro = updateEnderecoDtos.Bairro;
+            endereco.Numero = updateEnderecoDtos.Numero;
 
             _context.SaveChanges();
             return NoContent();

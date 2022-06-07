@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using FilmesAPI.Data;
-using FilmesAPI.Data.Dto;
+using FilmesAPI.Data.Dtos;
 using FilmesAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -24,9 +24,9 @@ namespace FilmesAPI.Controllers
         }
         
         [HttpPost]
-        public IActionResult AdicionarFilme([FromBody] CreateFilmeDto filmedto)
+        public IActionResult AdicionarFilme([FromBody] CreateFilmeDtos filmeDtos)
         {
-            Filme filme = _mapper.Map<Filme>(filmedto);
+            Filme filme = _mapper.Map<Filme>(filmeDtos);
 
             _context.Add(filme);
             _context.SaveChanges();
@@ -44,27 +44,27 @@ namespace FilmesAPI.Controllers
 
             if (filme != null)
             {
-                ReadFilmeDto readFilmeDto = _mapper.Map<ReadFilmeDto>(filme);
-                return Ok(readFilmeDto);
+                ReadFilmeDtos readFilmeDtos = _mapper.Map<ReadFilmeDtos>(filme);
+                return Ok(readFilmeDtos);
             }
             return NotFound();
         }
 
         [HttpPut("{id}")]
-        public IActionResult AtualizaFilmeId(int id, [FromBody] UpdateFilmeDto updateFilmeDto)
+        public IActionResult AtualizaFilmeId(int id, [FromBody] UpdateFilmeDtos updateFilmeDtos)
         {
             Filme filme = _context.Filmes.FirstOrDefault(filme => filme.Id == id);
 
             if (filme == null)
                 return NotFound();
             
-            _mapper.Map<Filme>(updateFilmeDto);
-            //_mapper.Map(updateFilmeDto, filme);  ps: Forma alternativa
+            _mapper.Map<Filme>(updateFilmeDtos);
+            //_mapper.Map(updateFilmeDtos, filme);  ps: Forma alternativa
 
-            filme.Titulo = updateFilmeDto.Titulo;
-            filme.Diretor = updateFilmeDto.Diretor;
-            filme.Duracao = updateFilmeDto.Duracao;
-            filme.Genero = updateFilmeDto.Genero;
+            filme.Titulo = updateFilmeDtos.Titulo;
+            filme.Diretor = updateFilmeDtos.Diretor;
+            filme.Duracao = updateFilmeDtos.Duracao;
+            filme.Genero = updateFilmeDtos.Genero;
 
             _context.SaveChanges();
             return NoContent();

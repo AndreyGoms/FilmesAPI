@@ -1,7 +1,7 @@
 ﻿
-namespace FilmesAPI.Data.Dto
+namespace FilmesAPI.Data.Dtos
 {
-    public class UpdateEnderecoDto
+    public class UpdateEnderecoDtos
     {
         public string Logradouro { get; set; }
         public string Bairro { get; set; }

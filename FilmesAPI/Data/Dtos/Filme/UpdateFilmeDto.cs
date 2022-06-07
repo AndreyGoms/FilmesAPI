@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FilmesAPI.Data.Dto
+namespace FilmesAPI.Data.Dtos
 {
-    public class CreateFilmeDto
+    public class UpdateFilmeDtos
     {
         [Required(ErrorMessage = "O campo titulo é obrigatorio")] // obriga a preencher o campo
         public string Titulo { get; set; }

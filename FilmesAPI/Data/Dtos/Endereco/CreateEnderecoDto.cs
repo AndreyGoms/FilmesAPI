@@ -1,21 +1,19 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace FilmesAPI.Models
+namespace FilmesAPI.Data.Dtos
 {
-    public class Endereco
+    public class CreateEnderecoDtos
     {
-        [Key]
-        [Required]
-        public int Id { get; set; }
+
+        [Required(ErrorMessage = "Campo nome é obrigatorio")]
         public string Logradouro { get; set; }
         public string Bairro { get; set; }
         public int Numero { get; set; }
-        [JsonIgnore]
-        public  virtual Cinema cinema { get; set; }
+
     }
 }

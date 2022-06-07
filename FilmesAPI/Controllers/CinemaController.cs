@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using FilmesAPI.Data;
-using FilmesAPI.Data.Dto;
+using FilmesAPI.Data.Dtos;
 using FilmesAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -24,9 +24,9 @@ namespace FilmesAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult AdcionarCinema([FromBody] CreateCinemaDto cinemaDto)
+        public IActionResult AdcionarCinema([FromBody] CreateCinemaDtos cinemaDtos)
         {
-            Cinema cinema = _mapper.Map<Cinema>(cinemaDto);
+            Cinema cinema = _mapper.Map<Cinema>(cinemaDtos);
 
             _context.Add(cinema);
             _context.SaveChanges();
@@ -44,8 +44,8 @@ namespace FilmesAPI.Controllers
 
             if ( cinema != null)
             {
-                ReadCinemaDto readCinemaDto = _mapper.Map<ReadCinemaDto>(cinema);
-                return Ok();
+                ReadCinemaDtos readCinemaDtos = _mapper.Map<ReadCinemaDtos>(cinema);
+                return Ok(readCinemaDtos);
             }
 
             return NotFound();
@@ -53,16 +53,16 @@ namespace FilmesAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult AtualizaCinemaId(int id, [FromBody] UpdateCinemaDto updateCinemaDto)
+        public IActionResult AtualizaCinemaId(int id, [FromBody] UpdateCinemaDtos updateCinemaDtos)
         {
              Cinema cinema = _context.Cinemas.FirstOrDefault(cinema => cinema.Id == id);
 
             if (cinema == null)
                 return NotFound();
 
-            _mapper.Map<Cinema>(updateCinemaDto);
+            _mapper.Map<Cinema>(updateCinemaDtos);
 
-            cinema.Nome = updateCinemaDto.Nome;                      
+            cinema.Nome = updateCinemaDtos.Nome;                      
 
             _context.SaveChanges();
             return NoContent();
