@@ -21,7 +21,9 @@ namespace FilmesAPI.Models
 
         [StringLength(30, ErrorMessage = "genero = 30 char.")]
         public string Genero { get; set; }
-        
+
+        public int ClassificacaoEtaria { get; set; }
+
         [Range(1,600, ErrorMessage = "Fora do intervalo")]
         public int Duracao { get; set; }
         [JsonIgnore]

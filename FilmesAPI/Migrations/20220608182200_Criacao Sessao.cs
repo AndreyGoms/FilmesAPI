@@ -3,10 +3,15 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FilmesAPI.Migrations
 {
-    public partial class relacionamentocinemafilme : Migration
+    public partial class CriacaoSessao : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.RenameColumn(
+                name: "Id",
+                table: "Gerentes",
+                newName: "gerenteID");
+
             migrationBuilder.CreateTable(
                 name: "Sessoes",
                 columns: table => new
@@ -15,7 +20,8 @@ namespace FilmesAPI.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FilmeId = table.Column<int>(type: "int", nullable: false),
                     CinemaId = table.Column<int>(type: "int", nullable: false),
-                    HorarioDeEncerramento = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    HorarioDeEncerramento = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    HorarioInicio = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -49,6 +55,11 @@ namespace FilmesAPI.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Sessoes");
+
+            migrationBuilder.RenameColumn(
+                name: "gerenteID",
+                table: "Gerentes",
+                newName: "Id");
         }
     }
 }

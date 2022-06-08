@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilmesAPI.Migrations
 {
     [DbContext(typeof(FilmeContext))]
-    [Migration("20220608042211_Sessoes")]
-    partial class Sessoes
+    [Migration("20220608190706_Coluna Faixa Etaria")]
+    partial class ColunaFaixaEtaria
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -76,6 +76,9 @@ namespace FilmesAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("ClassificacaoEtaria")
+                        .HasColumnType("int");
+
                     b.Property<string>("Diretor")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -98,7 +101,7 @@ namespace FilmesAPI.Migrations
 
             modelBuilder.Entity("FilmesAPI.Models.Gerente", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("gerenteID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -106,7 +109,7 @@ namespace FilmesAPI.Migrations
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("gerenteID");
 
                     b.ToTable("Gerentes");
                 });

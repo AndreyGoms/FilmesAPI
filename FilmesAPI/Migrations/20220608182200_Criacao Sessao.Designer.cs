@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilmesAPI.Migrations
 {
     [DbContext(typeof(FilmeContext))]
-    [Migration("20220608011639_relacionamento cinema-filme")]
-    partial class relacionamentocinemafilme
+    [Migration("20220608182200_Criacao Sessao")]
+    partial class CriacaoSessao
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -98,7 +98,7 @@ namespace FilmesAPI.Migrations
 
             modelBuilder.Entity("FilmesAPI.Models.Gerente", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("gerenteID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -106,7 +106,7 @@ namespace FilmesAPI.Migrations
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("gerenteID");
 
                     b.ToTable("Gerentes");
                 });
@@ -125,6 +125,9 @@ namespace FilmesAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("HorarioDeEncerramento")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("HorarioInicio")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
