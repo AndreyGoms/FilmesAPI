@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace FilmesAPI.Models
@@ -23,6 +24,8 @@ namespace FilmesAPI.Models
         
         [Range(1,600, ErrorMessage = "Fora do intervalo")]
         public int Duracao { get; set; }
+        [JsonIgnore]
+        public virtual List<Sessao> Sessoes{ get; set; }
     }
 }
 

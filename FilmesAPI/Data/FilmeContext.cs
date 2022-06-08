@@ -27,7 +27,15 @@ namespace FilmesAPI.Data
             //  .OnDelete(DeleteBehavior.Restrict); faz com que a delecao seja restrita, ou seja, se deletar gerente o cinema ainda existiria
             // .HasForeignKey(cinema => cinema.gerenteID).IsRequired(false); possibilita criar cinema sem necessidade de uma chave de gerente
 
+            builder.Entity<Sessao>()
+                .HasOne(sessao => sessao.Filme)
+                .WithMany(filme => filme.Sessoes)
+                .HasForeignKey(sessao => sessao.FilmeId);
 
+            builder.Entity<Sessao>()
+                .HasOne(sessao => sessao.cinema)
+                .WithMany(filme => filme.Sessoes)
+                .HasForeignKey(sessao => sessao.CinemaId);
         }
 
 
@@ -35,5 +43,6 @@ namespace FilmesAPI.Data
         public DbSet<Cinema> Cinemas { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
         public DbSet<Gerente> Gerentes { get; set; }
+        public DbSet<Sessao> Sessoes { get; set; }
     }
 }
